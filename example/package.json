@@ -12,8 +12,7 @@
 		"foundation": "*",
 		"stylus": "*",
 		"nib": "*",
-		"dustjs-linkedin": "*",
-		"history.js": "git://github.com/browserstate/history.js.git"
+		"dustjs-linkedin": "*"
 	},
 	"devDependencies": {
 		"should": "*",
