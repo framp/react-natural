@@ -1,0 +1,13 @@
+{?skipLayout}
+	{+main}{/main}
+{:else}
+	<html>
+	<head>
+		<title>{title}</title>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	    <script src="/js/main.js"></script>
+	    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+	</head>
+	<body>{+main}{/main}</body>
+	</html>
+{/skipLayout}

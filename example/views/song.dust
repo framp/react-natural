@@ -1,0 +1,6 @@
+{>layout/}
+{<main}
+{song}
+<br />
+<a href="/songs">Back to songs</a>
+{/main}

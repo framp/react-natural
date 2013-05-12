@@ -1,0 +1,28 @@
+{
+	"name"           : "maramoja-example",
+	"version"        : "0.0.1",
+	"description"    : "maramoja example",
+	"author"         : "Federico Rampazzo <frampone@gmail.com> (http://framp.me)",
+	"scripts"				 : {
+		"start": "node app.js"
+	},
+	"dependencies"   : {
+		"express": "*",
+		"consolidate": "*",
+		"foundation": "*",
+		"stylus": "*",
+		"nib": "*",
+		"dustjs-linkedin": "*",
+		"history.js": "git://github.com/browserstate/history.js.git"
+	},
+	"devDependencies": {
+		"should": "*",
+		"mocha": "*",
+		"grunt": "*",
+		"grunt-contrib-copy": "*",
+		"grunt-contrib-clean": "*",
+		"grunt-dustjs": "*",
+		"grunt-contrib-uglify": "*",
+		"grunt-contrib-stylus": "*"
+	}
+}
