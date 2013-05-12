@@ -36,4 +36,4 @@ The end result should be:
 ###Show us something!
 Want to check out an example?
 
-Head over to `/example`, `npm install && grunt && npm start`
+Head over to `/example`, `npm install && grunt && npm start`, `open http://localhost:3000/songs`
