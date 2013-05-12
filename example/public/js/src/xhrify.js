@@ -1,14 +1,14 @@
-
 (function(){
-  var htmlDecode = function(input){
-    var e = document.createElement('div');
-    e.innerHTML = input;
-    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  }
+  var internalLinkRegex = new RegExp(
+    '^' + location.protocol + 
+    '//' + location.host);
+  var isInternal = function(link){
+    return !link || internalLinkRegex.test(link);
+  };
 
   var History = window.History;
   if ( !History )
-    return false;
+    return;
 
   History.Adapter.bind(window,'statechange',function(){
     var state = History.getState();
@@ -25,7 +25,6 @@
 
   $(document).ready(function(){
     var pageRequest = function(event){
-      event.preventDefault();
       var _this = $(this)
       var result = {
         method: 'get',
@@ -34,14 +33,18 @@
       };
       
       if (_this.is('a'))
-        result.action = _this.attr('href');
+        result.action = this.href;
       if (_this.is('form')){
         if (_this.attr('method').toLowerCase()==='post')
           result.method = 'post';
         result.action = _this.attr('action') || window.location.pathname;
         result.data = _this.serialize();
       }
-      History.pushState(result, '', result.action);
+
+      if (isInternal(result.action)){
+        event.preventDefault();
+        History.pushState(result, '', result.action);
+      }
     };
 
     $('body').on('click', 'a', pageRequest);

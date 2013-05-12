@@ -9,7 +9,7 @@ module.exports = function(grunt) {
 		    ]
 		}
     },
-    clean: ['public/js/main.js', 'public/css/main.css'],
+    clean: ['public/js/lib/dust-core-*.js', 'public/js/src/templates.js', 'public/js/main.js', 'public/css/main.css'],
     dustjs: {
     	compile: {
     		files: {
@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     },   
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy hh:mm:ss") %> */\n'
       },
       dist: {
         files: {
