@@ -17,6 +17,7 @@ It's not supposed to be an API server; a useful pattern actually consists of hav
 
 
 The end result should be:
+
     GET /page 
       Server => Retrieve data, generate HTML from a template, return HTML to the client
       Client => Retrieve HTML, display HTML, override link and forms event (if JS is enabled)
