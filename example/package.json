@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "An isomorphic, no-boilerplate app",
   "repository": "https://github.com/framp/maramoja",
-  "main": "./lib/index.js",
+  "main": "./index.js",
   "scripts": {
-    "start": "node ./lib/index.js",
-    "build": "./node_modules/browserify/bin/cmd.js --extension=.jsx lib/client.jsx > public/app.js",
+    "start": "node ./index.js",
+    "build": "./node_modules/browserify/bin/cmd.js --extension=.jsx lib/client.jsx > public/js/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Federico Rampazzo <frampone@gmail.com> (http://framp.me)",
