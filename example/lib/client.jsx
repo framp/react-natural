@@ -1,5 +1,5 @@
 'use strict'
-let React = require('react/addons')
+let React = require('react')
 let Router = require('react-router')
 let routes = require('../routes')
 
@@ -12,8 +12,11 @@ Router.run(routes, Router.HistoryLocation, function (Handler, state) {
     return
   }
   fetch(state.path, {
+    method: state.data.method ? state.data.method : 'GET',
+    body: state.data.body ? JSON.stringify(state.data.body) : null,
     headers: {
-      'Accept': 'application/json'
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     }
   }).then(function(response) {
     return response.json()

@@ -13,21 +13,29 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.12.3",
-    "browserify": "^10.2.3",
-    "es6ify": "^1.6.0",
     "express": "^4.12.3",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
-    "reactify": "^1.1.1",
+    "react-router-form": "git://github.com/framp/react-router-form.git",
     "whatwg-fetch": "^0.9.0"
   },
   "devDependencies": {
+    "browserify": "^10.2.3",
+    "browserify-shim": "^3.8.8",
+    "es6ify": "^1.6.0",
+    "reactify": "^1.1.1",
     "babel": "^5.2.17"
   },
   "browserify": {
     "transform": [
       "reactify",
-      "es6ify"
+      "es6ify",
+      "browserify-shim"
     ]
+  },
+  "browserify-shim": {
+    "react": "global:React",
+    "react-router": "global:ReactRouter",
+    "react-router-form": "global:ReactRouterForm"
   }
 }

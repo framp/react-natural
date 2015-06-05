@@ -24,7 +24,11 @@ app.use((req, res, next) => {
         return res.send(initialState)
       let html = React.renderToString(<Handler initialState={initialState}/>)
       return res.send(
-        '<html><body>' + html + 
+        '<html><head>' +
+        '<script src="https://fb.me/react-0.13.3.min.js"></script>' +
+        '<script src="/ReactRouter-0.13.2+828.js"></script>' +
+        '<script src="/ReactRouterForm.js"></script>' +
+        '</head><body>' + html + 
         '<script>initialState=' + JSON.stringify(initialState) + '</script>' +
         '<script src="/app.js"></script>' +
         '</body></html>')

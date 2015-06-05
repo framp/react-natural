@@ -1,9 +1,9 @@
 'use strict'
-let React = require('react/addons')
+let React = require('react')
 let Link = require('react-router').Link
+let Form = require('react-router-form')
 
 module.exports = React.createClass({
-  mixins: [React.addons.LinkedStateMixin],
   getInitialState: function() {
     return this.props.initialState || { 
       songs: [],
@@ -21,10 +21,10 @@ module.exports = React.createClass({
             return <li key={id}><Link to="song" params={{id: id}}>{song}</Link></li>
           }) }
         </ul>
-        <form method="post" action="/search">
-          <input type="text" name="song" valueLink={this.linkState('searchForm.song')} />
+        <Form method="POST" to="search">
+          <input type="text" name="search" />
           <input type="submit" />
-        </form>
+        </Form>
       </div>
     )
   }

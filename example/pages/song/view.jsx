@@ -1,9 +1,8 @@
 'use strict'
-let React = require('react/addons')
+let React = require('react')
 let Link = require('react-router').Link
 
 module.exports = React.createClass({
-  mixins: [React.addons.LinkedStateMixin],
   getInitialState: function() {
     return this.props.initialState || { 
       song: 'Unknown'

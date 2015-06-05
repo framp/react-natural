@@ -1,8 +1,11 @@
 let songs = require('../../songs.json')
 
 module.exports = function(req, next){
-  let id = songs.indexOf(req.body.song)
+  let search = (req.body.search || '').toLowerCase()
   next({
-    song: songs[id] || 'Song not found'
+    search: req.body.search || '*',
+    songs: songs.filter(function(value){
+      return value.toLowerCase().indexOf(search)!==-1
+    })
   })
 }
