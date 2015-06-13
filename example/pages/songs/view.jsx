@@ -12,6 +12,9 @@ module.exports = React.createClass({
       }
     }
   },
+  componentDidMount: function() {
+    document.title = this.state.title
+  },
   render: function () {
     return (
       <div>

@@ -4,6 +4,7 @@ let bodyParser = require('body-parser')
 let React = require('react')
 let Router = require('react-router')
 let routes = require('../routes')
+let App = require('../template')
 
 let app = express()
 app.use(express.static('public'))
@@ -14,7 +15,7 @@ app.use(bodyParser.urlencoded({
 app.use((req, res, next) => {
   let router = Router.create({location: req.url, routes: routes})
   router.run((Handler, state) => {
-    if (!state || !state.routes || !state.routes[0])
+    if (!state || !state.routes || !state.routes[0] || !state.routes[0].name)
       return next();
     let name = state.routes[0].name
     let data = require('../pages/' + name + '/data')
@@ -22,16 +23,9 @@ app.use((req, res, next) => {
     data(req, (initialState) => {
       if (!req.accepts('html'))
         return res.send(initialState)
-      let html = React.renderToString(<Handler initialState={initialState}/>)
-      return res.send(
-        '<html><head>' +
-        //'<script src="https://fb.me/react-0.13.3.min.js"></script>' +
-        '<script src="/js/react-0.13.3.min.js"></script>' +
-        '<script src="/js/react-router-custom.js"></script>' +
-        '</head><body>' + html + 
-        '<script>initialState=' + JSON.stringify(initialState) + '</script>' +
-        '<script src="/js/app.js"></script>' +
-        '</body></html>')
+      let template = React.renderToStaticMarkup(<App initialState={initialState}/>)
+      let html = template.replace('{body}', React.renderToString(<Handler initialState={initialState}/>))
+      return res.send(html)
     });
   })
 })

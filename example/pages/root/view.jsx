@@ -8,15 +8,14 @@ module.exports = React.createClass({
       name: 'Unknown'
     }
   },
+  componentDidMount: function() {
+    document.title = this.state.title
+  },
   render: function () {
     return (
       <div>
         Hello {this.state.name} <br />
         <Link to="songs">Check out some songs</Link> <br />
-        
-        <video autoPlay loop>
-          <source src="/isomorphic-javascript.mp4" type="video/mp4" />
-        </video>
       </div>
     )
   }

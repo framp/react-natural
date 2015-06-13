@@ -1,4 +1,37 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict'
+let React = (window.React)
+let Router = (window.ReactRouter)
+let routes = require('../routes')
+
+require('whatwg-fetch')
+
+document.addEventListener('DOMContentLoaded', function(event) { 
+  Router.run(routes, Router.HistoryLocation, function (Handler, state) {
+    let container = document.body
+    if (initialState) {
+      React.render(React.createElement(Handler, {initialState: initialState}), container)
+      initialState = null
+      return
+    }
+    fetch(state.path, {
+      method: state.data.method ? state.data.method : 'GET',
+      body: state.data.body ? JSON.stringify(state.data.body) : null,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(function(response) {
+      return response.json()
+    }).then(function(json) {
+      React.render(React.createElement(Handler, {initialState: json}), container)
+    }).catch(function(ex) {
+      console.log('Error while retrieving data', ex)
+    })
+  })
+})
+
+},{"../routes":7,"whatwg-fetch":2}],2:[function(require,module,exports){
 (function() {
   'use strict';
 
@@ -330,21 +363,6 @@
   self.fetch.polyfill = true
 })();
 
-},{}],2:[function(require,module,exports){
-'use strict'
-'use strict'
-let React = (window.React)
-
-module.exports = React.createClass({displayName: "exports",
-  render: function () {
-    return (
-      React.createElement("div", null, 
-        "404"
-      )
-    )
-  }
-})
-
 },{}],3:[function(require,module,exports){
 'use strict'
 let React = (window.React)
@@ -356,15 +374,14 @@ module.exports = React.createClass({displayName: "exports",
       name: 'Unknown'
     }
   },
+  componentDidMount: function() {
+    document.title = this.state.title
+  },
   render: function () {
     return (
       React.createElement("div", null, 
         "Hello ", this.state.name, " ", React.createElement("br", null), 
-        React.createElement(Link, {to: "songs"}, "Check out some songs"), " ", React.createElement("br", null), 
-        
-        React.createElement("video", {autoPlay: true, loop: true}, 
-          React.createElement("source", {src: "/isomorphic-javascript.mp4", type: "video/mp4"})
-        )
+        React.createElement(Link, {to: "songs"}, "Check out some songs"), " ", React.createElement("br", null)
       )
     )
   }
@@ -381,6 +398,9 @@ module.exports = React.createClass({displayName: "exports",
       search: 'Unknown',
       songs: []
     }
+  },
+  componentDidMount: function() {
+    document.title = this.state.title
   },
   render: function () {
     return (
@@ -408,6 +428,9 @@ module.exports = React.createClass({displayName: "exports",
       song: 'Unknown'
     }
   },
+  componentDidMount: function() {
+    document.title = this.state.title
+  },
   render: function () {
     return (
       React.createElement("div", null, 
@@ -432,6 +455,9 @@ module.exports = React.createClass({displayName: "exports",
         song: ''
       }
     }
+  },
+  componentDidMount: function() {
+    document.title = this.state.title
   },
   render: function () {
     return (
@@ -464,38 +490,7 @@ module.exports = [
   React.createElement(Route, {name: "root", path: "/", handler: require('./pages/root/view')}),
   React.createElement(Route, {name: "songs", path: "/songs", handler: require('./pages/songs/view')}),
   React.createElement(Route, {name: "song", path: "/songs/:id", handler: require('./pages/song/view')}),
-  React.createElement(Route, {name: "search", path: "/search", handler: require('./pages/search/view')}),
-  React.createElement(NotFoundRoute, {handler: require('./pages/404/view')})
+  React.createElement(Route, {name: "search", path: "/search", handler: require('./pages/search/view')})
 ] 
 
-},{"./pages/404/view":2,"./pages/root/view":3,"./pages/search/view":4,"./pages/song/view":5,"./pages/songs/view":6}],8:[function(require,module,exports){
-'use strict'
-let React = (window.React)
-let Router = (window.ReactRouter)
-let routes = require('../routes')
-
-require('whatwg-fetch')
-
-Router.run(routes, Router.HistoryLocation, function (Handler, state) {
-  if (initialState) {
-    React.render(React.createElement(Handler, {initialState: initialState}), document.body)
-    initialState = null
-    return
-  }
-  fetch(state.path, {
-    method: state.data.method ? state.data.method : 'GET',
-    body: state.data.body ? JSON.stringify(state.data.body) : null,
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }).then(function(response) {
-    return response.json()
-  }).then(function(json) {
-    React.render(React.createElement(Handler, {initialState: json}), document.body)
-  }).catch(function(ex) {
-    console.log('Error while retrieving data', ex)
-  })
-})
-
-},{"../routes":7,"whatwg-fetch":1}]},{},[8]);
+},{"./pages/root/view":3,"./pages/search/view":4,"./pages/song/view":5,"./pages/songs/view":6}]},{},[1]);

@@ -9,6 +9,9 @@ module.exports = React.createClass({
       songs: []
     }
   },
+  componentDidMount: function() {
+    document.title = this.state.title
+  },
   render: function () {
     return (
       <div>
