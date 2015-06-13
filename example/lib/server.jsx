@@ -1,6 +1,6 @@
+'use strict'
 let express = require('express')
 let bodyParser = require('body-parser')
-'use strict'
 let React = require('react')
 let Router = require('react-router')
 let routes = require('../routes')

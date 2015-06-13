@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }).then(function(json) {
       React.render(<Handler initialState={json}/>, container)
     }).catch(function(ex) {
-      console.log('Error while retrieving data', ex)
+      location.reload()
     })
   })
 })

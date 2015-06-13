@@ -2,36 +2,40 @@
 'use strict'
 let React = (window.React)
 let Router = (window.ReactRouter)
-let routes = require('../routes')
 
 require('whatwg-fetch')
 
-document.addEventListener('DOMContentLoaded', function(event) { 
-  Router.run(routes, Router.HistoryLocation, function (Handler, state) {
-    let container = document.body
-    if (initialState) {
-      React.render(React.createElement(Handler, {initialState: initialState}), container)
-      initialState = null
-      return
-    }
-    fetch(state.path, {
-      method: state.data.method ? state.data.method : 'GET',
-      body: state.data.body ? JSON.stringify(state.data.body) : null,
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+module.exports = function(routes, options) {
+  options = options || {}
+  options.error = options.error || function(err){
+    location.reload()
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() { 
+    Router.run(routes, Router.HistoryLocation, function (Handler, state) {
+      let container = document.body
+      if (initialState) {
+        React.render(React.createElement(Handler, {initialState: initialState}), container)
+        initialState = null
+        return
       }
-    }).then(function(response) {
-      return response.json()
-    }).then(function(json) {
-      React.render(React.createElement(Handler, {initialState: json}), container)
-    }).catch(function(ex) {
-      location.reload()
+      fetch(state.path, {
+        method: state.data.method ? state.data.method : 'GET',
+        body: state.data.body ? JSON.stringify(state.data.body) : null,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(function(response) {
+        return response.json()
+      }).then(function(json) {
+        React.render(React.createElement(Handler, {initialState: json}), container)
+      }).catch(options.error)
     })
   })
-})
+}
 
-},{"../routes":7,"whatwg-fetch":2}],2:[function(require,module,exports){
+},{"whatwg-fetch":2}],2:[function(require,module,exports){
 (function() {
   'use strict';
 
@@ -365,6 +369,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 },{}],3:[function(require,module,exports){
 'use strict'
+let client = require('../client')
+let routes = require('./routes')
+
+client(routes, {
+  error: function(next) {
+    alert("asd")
+    location.reload()
+  }
+})
+
+},{"../client":1,"./routes":8}],4:[function(require,module,exports){
+'use strict'
 let React = (window.React)
 let Link = (window.ReactRouter).Link
 
@@ -387,7 +403,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 })
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict'
 let React = (window.React)
 let Link = (window.ReactRouter).Link
@@ -417,7 +433,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 })
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict'
 let React = (window.React)
 let Link = (window.ReactRouter).Link
@@ -441,7 +457,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 })
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict'
 let React = (window.React)
 let Link = (window.ReactRouter).Link
@@ -477,7 +493,7 @@ module.exports = React.createClass({displayName: "exports",
   }
 })
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict'
 let React = (window.React)
 let Router = (window.ReactRouter)
@@ -493,4 +509,4 @@ module.exports = [
   React.createElement(Route, {name: "search", path: "/search", handler: require('./pages/search/view')})
 ] 
 
-},{"./pages/root/view":3,"./pages/search/view":4,"./pages/song/view":5,"./pages/songs/view":6}]},{},[1]);
+},{"./pages/root/view":4,"./pages/search/view":5,"./pages/song/view":6,"./pages/songs/view":7}]},{},[3]);
