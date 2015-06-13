@@ -1,5 +1,6 @@
 'use strict'
-module.exports = function(React, Router, routes, pages, Template) {
+module.exports = function(React, Router, routes, pages, Template, options) {
+  options = options || {}
   return function(req, res, next) {
     let router = Router.create({location: req.url, routes: routes})
     router.run((Handler, state) => {

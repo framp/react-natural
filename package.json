@@ -1,8 +1,8 @@
 {
-  "name": "maramoja",
+  "name": "react-natural",
   "version": "0.0.1",
-  "description": "An isomorphic, no-boilerplate app",
-  "repository": "https://github.com/framp/maramoja",
+  "description": "A library to help you set up your isomorphic application",
+  "repository": "https://github.com/framp/react-natural",
   "main": "./index.js",
   "scripts": {
     "start": "node ./index.js",
