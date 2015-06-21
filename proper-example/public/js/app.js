@@ -10,6 +10,7 @@ module.exports = function(routes, options) {
   options.error = options.error || function(err){
     location.reload()
   }
+  options.prefix = options.prefix || '/api'
   
   document.addEventListener('DOMContentLoaded', function() { 
     Router.run(routes, Router.HistoryLocation, function (Handler, state) {
@@ -19,13 +20,9 @@ module.exports = function(routes, options) {
         initialState = null
         return
       }
-      fetch(state.path, {
+      fetch(options.prefix + state.path, {
         method: state.data.method ? state.data.method : 'GET',
-        body: state.data.body ? JSON.stringify(state.data.body) : null,
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
+        body: state.data.body ? JSON.stringify(state.data.body) : null
       }).then(function(response) {
         return response.json()
       }).then(function(json) {
@@ -372,12 +369,7 @@ module.exports = function(routes, options) {
 let client = require('../client')
 let routes = require('./routes')
 
-client(routes, {
-  error: function(next) {
-    alert("asd")
-    location.reload()
-  }
-})
+client(routes)
 
 },{"../client":1,"./routes":8}],4:[function(require,module,exports){
 'use strict'
