@@ -1,7 +1,5 @@
-'use strict'
-let React = require('react')
-let Router = require('react-router')
-
+var React = require('react')
+var Router = require('react-router')
 require('whatwg-fetch')
 
 module.exports = function(routes, options) {
@@ -10,10 +8,9 @@ module.exports = function(routes, options) {
     location.reload()
   }
   options.prefix = options.prefix || '/api'
-  
   document.addEventListener('DOMContentLoaded', function() { 
     Router.run(routes, Router.HistoryLocation, function (Handler, state) {
-      let container = document.body
+      var container = document.body
       if (initialState) {
         React.render(<Handler initialState={initialState}/>, container)
         initialState = null
