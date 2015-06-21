@@ -6,7 +6,7 @@ The simplest framework to build your isomorphic application.
 Standing on the shoulders of giants like [React](http://facebook.github.io/react/) and [React Router](https://github.com/rackt/react-router), React Natural gives you a simple set of conventions to build your application.
 
 ##How to start
-Head over to [React Natural Starter](http://github.com/framp/React Natural-starter/)!
+Head over to [React Natural Starter](http://github.com/framp/react-natural-starter/)!
 
 ##Library description
 Looking to fiddle around?
@@ -29,7 +29,7 @@ The Server side generates a [express](https://github.com/strongloop/express) mid
   };
 
 ###Client
-The Client attach a function to `DOMContentLoaded` which creates an istance of `React Router` with HTML5 pushState support enabled, using `routes`.
+The Client attach a function to `DOMContentLoaded` which creates an istance of React Router with HTML5 pushState support enabled, using `routes`.
 At every change of route the 
 
     function(routes, options)
