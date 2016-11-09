@@ -1,6 +1,9 @@
 React Natural
 ========
 
+This project won't be developed: just use the excellent [Next.js](https://zeit.co/blog/next)
+
+
 The simplest framework to build your isomorphic application.
 
 Standing on the shoulders of giants like [React](http://facebook.github.io/react/) and [React Router](https://github.com/rackt/react-router), React Natural gives you a simple set of conventions to build your application.
