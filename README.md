@@ -1,7 +1,10 @@
 React Natural
 ========
 
-This project won't be developed: just use the excellent [Next.js](https://zeit.co/blog/next)
+**This project won't be developed**: just use the excellent [Next.js](https://zeit.co/blog/next)
+
+---
+
 
 
 The simplest framework to build your isomorphic application.
