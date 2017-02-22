@@ -1,7 +1,7 @@
 React Natural
 ========
 
-**This project won't be developed**: just use the excellent [Next.js](https://zeit.co/blog/next)
+**This project won't be developed**: stay tuned for the new one
 
 ---
 
